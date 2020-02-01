@@ -1,0 +1,19 @@
+name: "stylelint problem matcher"
+
+description: "Sets up a problem matcher for stylelint that's used to create annotations for violations"
+
+author: "xt0rted"
+
+branding:
+  icon: "command"
+  color: "green"
+
+inputs:
+  action:
+    description: "The action to take on the problem matcher (add or remove)"
+    required: false
+    default: add
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
