@@ -1,5 +1,7 @@
 # Stylelint Problem Matcher
 
+[![CI Workflow Status](https://github.com/xt0rted/stylelint-problem-matcher/workflows/CI/badge.svg)](https://github.com/xt0rted/stylelint-problem-matcher/actions?query=workflow%3ACI)
+
 Adds a problem matcher that will detect errors from [Stylelint](https://stylelint.io/) and create annotations for them.
 
 ## Usage
