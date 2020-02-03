@@ -8,8 +8,7 @@ export function run() {
 
     switch (action) {
       case "add":
-        const matchersPath = join(__dirname, "..", ".github");
-        console.log(`::add-matcher::${join(matchersPath, "stylelint-problem-matcher.json")}`);
+        console.log(`::add-matcher::${join(__dirname, "..", ".github", "stylelint-problem-matcher.json")}`);
         break;
 
       case "remove":
