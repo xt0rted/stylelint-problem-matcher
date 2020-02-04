@@ -21,6 +21,8 @@ jobs:
       - run: npm test
 ```
 
+![Example of inline annotation](docs/example.png)
+
 ## Options
 
 Name | Allowed values | Description
