@@ -6,9 +6,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "lint": "tsc --noEmit",
     "package": "ncc build src/main.ts",
     "release": "npm run package && git add -f dist/",
-    "test": "tsc --noEmit"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,12 @@
     "@actions/core": "^1.2.2"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.1",
     "@types/node": "^13.7.0",
     "@zeit/ncc": "^0.21.0",
+    "jest": "^25.1.0",
+    "jest-circus": "^25.1.0",
+    "ts-jest": "^25.1.0",
     "typescript": "^3.7.5"
   }
 }
