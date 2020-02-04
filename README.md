@@ -21,7 +21,9 @@ jobs:
       - run: npm test
 ```
 
-![Example of inline annotation](docs/example.png)
+![Example of inline annotations](docs/annotations.png)
+
+![Example of build log with highlighted errors](docs/build-log.png)
 
 ## Options
 
