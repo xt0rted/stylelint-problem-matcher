@@ -1,6 +1,7 @@
 import { join } from "path";
 
 import { getInput, setFailed } from "@actions/core";
+import { issueCommand } from "@actions/core/lib/command"
 
 export function run() {
   try {
@@ -8,11 +9,21 @@ export function run() {
 
     switch (action) {
       case "add":
-        console.log(`::add-matcher::${join(__dirname, "..", ".github", "stylelint-problem-matcher.json")}`);
+        issueCommand(
+          "add-matcher",
+          {},
+          join(__dirname, "..", ".github", "stylelint-problem-matcher.json"),
+        );
         break;
 
       case "remove":
-        console.log("::remove-matcher owner=stylelint::");
+        issueCommand(
+          "remove-matcher",
+          {
+            owner: "stylelint",
+          },
+          "",
+        );
         break;
 
       default:
