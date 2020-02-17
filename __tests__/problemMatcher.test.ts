@@ -1,5 +1,5 @@
 import { matchResults } from "../__helpers__/utils";
-import { problemMatcher as problemMatcherJson } from "../.github/stylelint-problem-matcher.json";
+import { problemMatcher as problemMatcherJson } from "../.github/problem-matcher.json";
 import { ProblemMatcher, ProblemPattern } from "github-actions-problem-matcher-typings";
 
 const problemMatcher: ProblemMatcher = problemMatcherJson[0];
