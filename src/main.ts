@@ -1,26 +1,37 @@
+import { readFile } from "fs";
 import { join } from "path";
+import { promisify } from "util";
 
 import { getInput, setFailed } from "@actions/core";
 import { issueCommand } from "@actions/core/lib/command"
 
-export function run() {
+import { ProblemMatcher } from "github-actions-problem-matcher-typings";
+
+const readFileAsync = promisify(readFile);
+
+export async function run() {
   try {
     const action = getInput("action");
+
+    const matcherFile = join(__dirname, "..", ".github", "problem-matcher.json");
 
     switch (action) {
       case "add":
         issueCommand(
           "add-matcher",
           {},
-          join(__dirname, "..", ".github", "problem-matcher.json"),
+          matcherFile,
         );
         break;
 
       case "remove":
+        const fileContents = await readFileAsync(matcherFile, { encoding: "utf8" });
+        const problemMatcher: ProblemMatcher = JSON.parse(fileContents);
+
         issueCommand(
           "remove-matcher",
           {
-            owner: "stylelint",
+            owner: problemMatcher.owner,
           },
           "",
         );
