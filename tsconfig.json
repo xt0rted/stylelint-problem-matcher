@@ -62,7 +62,6 @@
   },
   "exclude": [
     "node_modules",
-    "__data__",
     "__helpers__",
     "__tests__"
   ]

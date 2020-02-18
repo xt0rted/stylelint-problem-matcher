@@ -1,17 +1,20 @@
 import { matchResults } from "../__helpers__/utils";
-import { stylelintMatcher, ProblemMatcherPattern } from "../__data__/stylelintMatcher";
+import { problemMatcher as problemMatcherJson } from "../.github/stylelint-problem-matcher.json";
+import { ProblemMatcher, ProblemPattern } from "github-actions-problem-matcher-typings";
+
+const problemMatcher: ProblemMatcher = problemMatcherJson[0];
 
 describe("problemMatcher", () => {
   it("has two patterns", () => {
-    expect(stylelintMatcher.pattern.length).toEqual(2);
+    expect(problemMatcher.pattern.length).toEqual(2);
   });
 
   describe("file pattern", () => {
-    let pattern: ProblemMatcherPattern;
+    let pattern: ProblemPattern;
     let regexp: RegExp;
 
     beforeEach(() => {
-      pattern = stylelintMatcher.pattern[0];
+      pattern = problemMatcher.pattern[0];
       regexp = new RegExp(pattern.regexp);
     });
 
@@ -30,11 +33,11 @@ describe("problemMatcher", () => {
   });
 
   describe("violation pattern", () => {
-    let pattern: ProblemMatcherPattern;
+    let pattern: ProblemPattern;
     let regexp: RegExp;
 
     beforeEach(() => {
-      pattern = stylelintMatcher.pattern[1];
+      pattern = problemMatcher.pattern[1];
       regexp = new RegExp(pattern.regexp);
     });
 
