@@ -1,4 +1,4 @@
-name: "Stylelint Problem Matcher"
+name: "Problem Matcher for stylelint"
 
 description: "Sets up a problem matcher for stylelint that's used to create annotations for violations"
 
