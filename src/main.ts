@@ -5,7 +5,7 @@ import { promisify } from "util";
 import { getInput, setFailed } from "@actions/core";
 import { issueCommand } from "@actions/core/lib/command"
 
-import { ProblemMatcher } from "github-actions-problem-matcher-typings";
+import { ProblemMatcherDocument } from "github-actions-problem-matcher-typings";
 
 const readFileAsync = promisify(readFile);
 
@@ -26,7 +26,8 @@ export async function run(): Promise<void> {
 
       case "remove":
         const fileContents = await readFileAsync(matcherFile, { encoding: "utf8" });
-        const problemMatcher: ProblemMatcher = JSON.parse(fileContents);
+        const problemMatcherDocument: ProblemMatcherDocument = JSON.parse(fileContents);
+        const problemMatcher = problemMatcherDocument.problemMatcher[0];
 
         issueCommand(
           "remove-matcher",
