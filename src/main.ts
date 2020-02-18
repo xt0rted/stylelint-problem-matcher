@@ -9,7 +9,7 @@ import { ProblemMatcher } from "github-actions-problem-matcher-typings";
 
 const readFileAsync = promisify(readFile);
 
-export async function run() {
+export async function run(): Promise<void> {
   try {
     const action = getInput("action");
 

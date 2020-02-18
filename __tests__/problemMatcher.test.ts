@@ -5,6 +5,10 @@ import { ProblemMatcher, ProblemPattern } from "github-actions-problem-matcher-t
 const problemMatcher: ProblemMatcher = problemMatcherJson[0];
 
 describe("problemMatcher", () => {
+  it("has the correct owner", () => {
+    expect(problemMatcher.owner).toEqual("stylelint");
+  });
+
   it("has two patterns", () => {
     expect(problemMatcher.pattern.length).toEqual(2);
   });

@@ -16,7 +16,10 @@
     "url": "git+https://github.com/xt0rted/dotnet-format-linter-action.git"
   },
   "keywords": [
-    "actions"
+    "actions",
+    "github",
+    "problem-matcher",
+    "annotations"
   ],
   "author": "xt0rted",
   "license": "MIT",
