@@ -30,7 +30,7 @@
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
     "@zeit/ncc": "^0.21.1",
-    "github-actions-problem-matcher-typings": "^1.0.0",
+    "github-actions-problem-matcher-typings": "^1.1.0",
     "jest": "^25.1.0",
     "jest-circus": "^25.1.0",
     "ts-jest": "^25.2.0",
