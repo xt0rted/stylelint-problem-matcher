@@ -55,27 +55,48 @@ module.exports = require("os");
 
 "use strict";
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = __webpack_require__(747);
 const path_1 = __webpack_require__(622);
+const util_1 = __webpack_require__(669);
 const core_1 = __webpack_require__(470);
+const command_1 = __webpack_require__(431);
+const readFileAsync = util_1.promisify(fs_1.readFile);
 function run() {
-    try {
-        const action = core_1.getInput("action");
-        switch (action) {
-            case "add":
-                console.log(`::add-matcher::${path_1.join(__dirname, "..", ".github", "stylelint-problem-matcher.json")}`);
-                break;
-            case "remove":
-                console.log("::remove-matcher owner=stylelint::");
-                break;
-            default:
-                throw Error(`Unsupported action "${action}"`);
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const action = core_1.getInput("action");
+            const matcherFile = __webpack_require__.ab + "problem-matcher.json";
+            switch (action) {
+                case "add":
+                    command_1.issueCommand("add-matcher", {}, __webpack_require__.ab + "problem-matcher.json");
+                    break;
+                case "remove":
+                    const fileContents = yield readFileAsync(__webpack_require__.ab + "problem-matcher.json", { encoding: "utf8" });
+                    const problemMatcherDocument = JSON.parse(fileContents);
+                    const problemMatcher = problemMatcherDocument.problemMatcher[0];
+                    command_1.issueCommand("remove-matcher", {
+                        owner: problemMatcher.owner,
+                    }, "");
+                    break;
+                default:
+                    throw Error(`Unsupported action "${action}"`);
+            }
         }
-    }
-    catch (error) {
-        core_1.setFailed(error.message);
-        throw error;
-    }
+        catch (error) {
+            core_1.setFailed(error.message);
+            throw error;
+        }
+    });
 }
 exports.run = run;
 run();
@@ -381,6 +402,20 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 669:
+/***/ (function(module) {
+
+module.exports = require("util");
+
+/***/ }),
+
+/***/ 747:
+/***/ (function(module) {
+
+module.exports = require("fs");
 
 /***/ })
 
