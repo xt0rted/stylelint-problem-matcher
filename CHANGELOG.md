@@ -10,7 +10,7 @@
 
 ## Version 1.1.0
 
-- Updated problem matcher regex to handle rules without line numbers such as [`unicode-bom`](https://stylelint.io/user-guide/rules/unicode-bom) (#2)
+- Updated problem matcher regex to handle rules without line numbers such as [`unicode-bom`](https://stylelint.io/user-guide/rules/unicode-bom) ([#2](https://github.com/xt0rted/stylelint-problem-matcher/pull/2))
 
 ## Version 1.0.0
 
