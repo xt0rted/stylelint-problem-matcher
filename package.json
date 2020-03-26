@@ -31,7 +31,7 @@
     "@types/node": "^13.9.4",
     "@zeit/ncc": "^0.21.1",
     "github-actions-problem-matcher-typings": "^1.1.0",
-    "jest": "^25.2.1",
+    "jest": "^25.2.2",
     "jest-circus": "^25.2.2",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
