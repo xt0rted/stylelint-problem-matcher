@@ -27,7 +27,7 @@
     "@actions/core": "^1.2.5"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@types/node": "^14.10.3",
     "@zeit/ncc": "^0.22.3",
     "github-actions-problem-matcher-typings": "^1.1.0",
