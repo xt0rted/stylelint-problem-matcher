@@ -1,7 +1,6 @@
 # Problem Matcher for stylelint
 
-[![CI Workflow Status](https://github.com/xt0rted/stylelint-problem-matcher/workflows/CI/badge.svg)](https://github.com/xt0rted/stylelint-problem-matcher/actions?query=workflow%3ACI)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=xt0rted/stylelint-problem-matcher)](https://dependabot.com)
+[![CI](https://github.com/xt0rted/stylelint-problem-matcher/actions/workflows/ci.yml/badge.svg)](https://github.com/xt0rted/stylelint-problem-matcher/actions/workflows/ci.yml)
 
 Adds a problem matcher that will detect errors from [Stylelint](https://stylelint.io/) and create annotations for them.
 
