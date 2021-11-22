@@ -27,7 +27,7 @@
     "@actions/core": "^1.6.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
     "@vercel/ncc": "^0.31.1",
     "github-actions-problem-matcher-typings": "^1.1.0",
