@@ -28,18 +28,43 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dependabot ecosystem
+        uses: actions/github-script@v5.0.0
         id: metadata
-        shell: pwsh
-        run: |
-          $dependency = "${{ steps.dependabot_metadata.outputs.dependency-names }}".Split(',')[0]
+        with:
+          script: |
+            // https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem
+            const environments = {
+              ruby: "bundler",
+              rust: "cargo",
+              php: "composer",
+              docker: "docker",
+              elixir: "mix",
+              elm: "elm",
+              submodules: "gitsubmodule",
+              github_actions: "github-actions",
+              go: "gomod",
+              //java: "gradle",
+              //java: "maven",
+              javascript: "npm",
+              ".NET": "nuget",
+              python: "pip",
+              terraform: "terraform",
+            };
+            const labels = context.payload.pull_request.labels.map(l => l.name);
 
-          if ($dependency.StartsWith("@") -or !$dependency.Contains("/")) {
-              $ecosystem = "npm"
-          } else {
-              $ecosystem = "github-actions"
-          }
+            if (!labels) {
+              core.setFailed("Pull request has no labels");
+              return;
+            }
 
-          Write-Output "::set-output name=dependency-ecosystem::$ecosystem"
+            const ecosystem = environments[labels.filter(l => environments.hasOwnProperty(l))[0]];
+
+            if (!ecosystem) {
+              core.setFailed("No ecosystem label found");
+              return
+            }
+
+            core.setOutput("dependency-ecosystem", ecosystem);
 
       - name: Authenticate cli
         run: echo "${{ steps.generate_token.outputs.token }}" | gh auth login --with-token
