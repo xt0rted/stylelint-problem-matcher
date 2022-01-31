@@ -28,7 +28,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Dependabot ecosystem
-        uses: actions/github-script@v5.0.0
+        uses: actions/github-script@v5.1.0
         id: metadata
         with:
           script: |
