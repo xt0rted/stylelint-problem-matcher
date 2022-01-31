@@ -33,37 +33,34 @@ jobs:
         with:
           script: |
             // https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem
-            const environments = {
-              ruby: "bundler",
-              rust: "cargo",
-              php: "composer",
+            const ecosystems = {
+              bundler: "bundler",
+              cargo: "cargo",
+              composer: "composer",
               docker: "docker",
-              elixir: "mix",
               elm: "elm",
-              submodules: "gitsubmodule",
               github_actions: "github-actions",
-              go: "gomod",
-              //java: "gradle",
-              //java: "maven",
-              javascript: "npm",
-              ".NET": "nuget",
-              python: "pip",
+              go_modules: "gomod",
+              gradle: "gradle",
+              hex: "mix",
+              maven: "maven",
+              npm_and_yarn: "npm",
+              nuget: "nuget",
+              pip: "pip",
+              submodules: "gitsubmodule",
               terraform: "terraform",
             };
-            const labels = context.payload.pull_request.labels.map(l => l.name);
 
-            if (!labels) {
-              core.setFailed("Pull request has no labels");
+            const branchName = context.payload.pull_request.head.ref;
+            const [, branchEnvironment] = branchName.split("/");
+            const ecosystem = ecosystems[branchEnvironment];
+
+            if (!ecosystem) {
+              core.setFailed(`No ecosystem found in branch: ${branchName}`);
               return;
             }
 
-            const ecosystem = environments[labels.filter(l => environments.hasOwnProperty(l))[0]];
-
-            if (!ecosystem) {
-              core.setFailed("No ecosystem label found");
-              return
-            }
-
+            core.info(`dependency-ecosystem detected: ${ecosystem}`);
             core.setOutput("dependency-ecosystem", ecosystem);
 
       - name: Authenticate cli
