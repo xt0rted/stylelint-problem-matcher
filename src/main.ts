@@ -5,7 +5,7 @@ import { promisify } from "util";
 import { getInput, setFailed } from "@actions/core";
 import { issueCommand } from "@actions/core/lib/command"
 
-import { ProblemMatcherDocument } from "github-actions-problem-matcher-typings";
+import type { ProblemMatcherDocument } from "github-actions-problem-matcher-typings";
 
 const readFileAsync = promisify(readFile);
 
@@ -42,8 +42,11 @@ export async function run(): Promise<void> {
         throw Error(`Unsupported action "${action}"`);
     }
   } catch (error) {
-    setFailed(error.message);
-    throw error;
+    if (error instanceof Error) {
+      setFailed(error.message);
+    } else {
+      throw error;
+    }
   }
 }
 

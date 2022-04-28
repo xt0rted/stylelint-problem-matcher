@@ -24,16 +24,16 @@
   "author": "xt0rted",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.2"
+    "@actions/core": "^1.7.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.2",
-    "@types/node": "^13.7.1",
-    "@zeit/ncc": "^0.21.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.29",
+    "@vercel/ncc": "^0.33.4",
     "github-actions-problem-matcher-typings": "^1.1.0",
-    "jest": "^25.1.0",
-    "jest-circus": "^25.1.0",
-    "ts-jest": "^25.2.0",
-    "typescript": "^3.7.5"
+    "jest": "^28.0.2",
+    "jest-circus": "^28.0.2",
+    "ts-jest": "^28.0.0-next.2",
+    "typescript": "^4.6.4"
   }
 }
