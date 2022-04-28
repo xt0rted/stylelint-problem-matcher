@@ -14,6 +14,7 @@ module.exports = {
     }
   },
   moduleFileExtensions: ["js", "ts"],
+  reporters: ["default", "github-actions"],
   testEnvironment: "node",
   testMatch: ["**/*.test.ts"],
   testRunner: "jest-circus/runner",
