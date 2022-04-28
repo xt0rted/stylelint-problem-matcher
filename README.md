@@ -13,10 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
           with:
-            node-version: "12.x"
+            node-version: 16
       - uses: xt0rted/stylelint-problem-matcher@v1
       - run: npm ci
       - run: npm test
@@ -56,10 +56,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
           with:
-            node-version: "12.x"
+            node-version: 16
       - uses: xt0rted/stylelint-problem-matcher@v1
       - run: npm ci
         working-directory: "src/website"
