@@ -4,6 +4,8 @@
 
 - Updated to run on Node 16
 - Converted to es modules
+- Updated problem matcher to support errors and warnings
+  - The problem matcher owner changed from `stylelint` to `stylelint-error` and the new one is `stylelint-warning`
 
 ## [1.3.0](https://github.com/xt0rted/stylelint-problem-matcher/compare/v1.2.0...v1.3.0) - 2022-04-28
 

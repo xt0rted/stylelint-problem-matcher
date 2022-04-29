@@ -1,7 +1,8 @@
 {
   "problemMatcher": [
     {
-      "owner": "stylelint",
+      "owner": "stylelint-error",
+      "severity": "error",
       "pattern": [
         {
           "regexp": "^([^\\s].*)$",
@@ -9,6 +10,24 @@
         },
         {
           "regexp": "^\\s+((\\d+):(\\d+))?\\s+(✖|×)\\s+(.*)\\s{3,}(.*)$",
+          "line": 2,
+          "column": 3,
+          "message": 5,
+          "code": 6,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "owner": "stylelint-warning",
+      "severity": "warning",
+      "pattern": [
+        {
+          "regexp": "^([^\\s].*)$",
+          "file": 1
+        },
+        {
+          "regexp": "^\\s+((\\d+):(\\d+))?\\s+(⚠|‼)\\s+(.*)\\s{3,}(.*)$",
           "line": 2,
           "column": 3,
           "message": 5,
