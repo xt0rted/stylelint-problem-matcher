@@ -1,11 +1,25 @@
-import { matchResults } from "../__helpers__/utils";
-import { problemMatcher as problemMatcherJson } from "../.github/problem-matcher.json";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 
-import type { ProblemMatcher, ProblemPattern } from "github-actions-problem-matcher-typings";
+import { matchResults } from "./utils";
 
-const problemMatcher: ProblemMatcher = problemMatcherJson[0];
+import type {
+  ProblemMatcher,
+  ProblemMatcherDocument,
+  ProblemPattern,
+} from "github-actions-problem-matcher-typings";
 
 describe("problemMatcher", () => {
+  let problemMatcher: ProblemMatcher;
+
+  beforeAll(async () => {
+    const matcherFile = fileURLToPath(new URL("../src/problem-matcher.json", import.meta.url));
+    const fileContents = await readFile(matcherFile, { encoding: "utf8" });
+    const problemMatcherDocument = JSON.parse(fileContents) as ProblemMatcherDocument;
+
+    problemMatcher = problemMatcherDocument.problemMatcher[0];
+  });
+
   it("has the correct owner", () => {
     expect(problemMatcher.owner).toEqual("stylelint");
   });
@@ -33,7 +47,7 @@ describe("problemMatcher", () => {
       const results = matchResults(reportOutput, regexp);
 
       expect(results.length).toEqual(1);
-      expect(results[0][pattern.file]).toEqual("scss/_test.scss");
+      expect(results[0][pattern.file!]).toEqual("scss/_test.scss");
     });
   });
 
@@ -80,10 +94,10 @@ describe("problemMatcher", () => {
       const results = matchResults(reportOutput, regexp);
 
       expect(results.length).toEqual(1);
-      expect(results[0][pattern.line]).toEqual("11");
-      expect(results[0][pattern.column]).toEqual("16");
-      expect(results[0][pattern.message]).toEqual("Unexpected unit       ");
-      expect(results[0][pattern.code]).toEqual("length-zero-no-unit");
+      expect(results[0][pattern.line!]).toEqual("11");
+      expect(results[0][pattern.column!]).toEqual("16");
+      expect(results[0][pattern.message!]).toEqual("Unexpected unit       ");
+      expect(results[0][pattern.code!]).toEqual("length-zero-no-unit");
     });
   });
 });

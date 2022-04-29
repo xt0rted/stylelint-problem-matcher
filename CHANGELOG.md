@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Updated to run on Node 16
+- Converted to es modules
 
 ## [1.3.0](https://github.com/xt0rted/stylelint-problem-matcher/compare/v1.2.0...v1.3.0) - 2022-04-28
 
