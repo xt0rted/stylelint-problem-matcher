@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import {
   getInput,
   setFailed,
+  info,
 } from "@actions/core";
 import { issueCommand } from "@actions/core/lib/command"
 
@@ -13,7 +14,7 @@ export async function run(): Promise<void> {
   try {
     const action = getInput("action");
 
-    const matcherFile = fileURLToPath(new URL("problem-matcher.json", import.meta.url));
+    const matcherFile = new URL("problem-matcher.json", import.meta.url);
 
     switch (action) {
       case "add":
