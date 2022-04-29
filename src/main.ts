@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
   getInput,
@@ -13,7 +13,7 @@ export async function run(): Promise<void> {
   try {
     const action = getInput("action");
 
-    const matcherFile = join(__dirname, "problem-matcher.json");
+    const matcherFile = fileURLToPath(new URL("problem-matcher.json", import.meta.url));
 
     switch (action) {
       case "add":
