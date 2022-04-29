@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Support logs with color output (`FORCE_COLOR=true`)
+
 ## [1.3.0](https://github.com/xt0rted/stylelint-problem-matcher/compare/v1.2.0...v1.3.0) - 2022-04-28
 
 - Bumped `@actions/core` from 1.2.2 to 1.7.0

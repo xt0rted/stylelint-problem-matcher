@@ -37,7 +37,10 @@ describe("problemMatcher", () => {
     });
   });
 
-  describe("violation pattern", () => {
+  describe.each([
+    "✖",
+    "×",
+  ])("violation pattern using '%s'", (icon) => {
     let pattern: ProblemPattern;
     let regexp: RegExp;
 
@@ -46,44 +49,88 @@ describe("problemMatcher", () => {
       regexp = new RegExp(pattern.regexp);
     });
 
-    it("matches violations", () => {
-      const reportOutput = [
-        "scss/_test.scss",
-        " 11:16  ×  Unexpected unit          length-zero-no-unit",
-        " 11:28  ×  Unexpected unit          length-zero-no-unit",
-      ];
+    describe("without color output", () => {
+      it("matches violations", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          ` 11:16  ${icon}  Unexpected unit          length-zero-no-unit`,
+          ` 11:28  ${icon}  Unexpected unit          length-zero-no-unit`,
+        ];
 
-      const results = matchResults(reportOutput, regexp);
+        const results = matchResults(reportOutput, regexp);
 
-      expect(results.length).toEqual(2);
+        expect(results.length).toEqual(2);
+      });
+
+      it("matches violations without line numbers", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          `        ${icon}  Unexpected Unicode BOM   unicode-bom`,
+          ` 11:16  ${icon}  Unexpected unit          length-zero-no-unit`,
+          ` 11:28  ${icon}  Unexpected unit          length-zero-no-unit`,
+        ];
+
+        const results = matchResults(reportOutput, regexp);
+
+        expect(results.length).toEqual(3);
+      });
+
+      it("matches violation details", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          ` 11:16  ${icon}  Unexpected unit          length-zero-no-unit`,
+        ];
+
+        const results = matchResults(reportOutput, regexp);
+
+        expect(results.length).toEqual(1);
+        expect(results[0][pattern.line!]).toEqual("11");
+        expect(results[0][pattern.column!]).toEqual("16");
+        expect(results[0][pattern.message!]).toEqual("Unexpected unit        ");
+        expect(results[0][pattern.code!]).toEqual("length-zero-no-unit");
+      });
     });
 
-    it("matches violations without line numbers", () => {
-      const reportOutput = [
-        "scss/_test.scss",
-        "        ×  Unexpected Unicode BOM   unicode-bom",
-        " 11:16  ×  Unexpected unit          length-zero-no-unit",
-        " 11:28  ×  Unexpected unit          length-zero-no-unit",
-      ];
+    describe("with color output", () => {
+      it("matches violations", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          ` \u001B[2m11:16\u001B[22m  \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected unit          \u001B[2mlength-zero-no-unit\u001B[22m`,
+          ` \u001B[2m11:28\u001B[22m  \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected unit          \u001B[2mlength-zero-no-unit\u001B[22m`,
+        ];
 
-      const results = matchResults(reportOutput, regexp);
+        const results = matchResults(reportOutput, regexp);
 
-      expect(results.length).toEqual(3);
-    });
+        expect(results.length).toEqual(2);
+      });
 
-    it("matches violation details", () => {
-      const reportOutput = [
-        "scss/_test.scss",
-        " 11:16  ×  Unexpected unit          length-zero-no-unit",
-      ];
+      it("matches violations without line numbers", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          `        \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected Unicode BOM   \u001B[2municode-bom\u001B[22m`,
+          ` \u001B[2m11:16\u001B[22m  \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected unit          \u001B[2mlength-zero-no-unit\u001B[22m`,
+          ` \u001B[2m11:28\u001B[22m  \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected unit          \u001B[2mlength-zero-no-unit\u001B[22m`,
+        ];
 
-      const results = matchResults(reportOutput, regexp);
+        const results = matchResults(reportOutput, regexp);
 
-      expect(results.length).toEqual(1);
-      expect(results[0][pattern.line]).toEqual("11");
-      expect(results[0][pattern.column]).toEqual("16");
-      expect(results[0][pattern.message]).toEqual("Unexpected unit       ");
-      expect(results[0][pattern.code]).toEqual("length-zero-no-unit");
+        expect(results.length).toEqual(3);
+      });
+
+      it("matches violation details", () => {
+        const reportOutput = [
+          "scss/_test.scss",
+          ` \u001B[2m11:16\u001B[22m  \u001B[31m\u001B[31m${icon}\u001B[39m  Unexpected unit          \u001B[2mlength-zero-no-unit\u001B[22m`,
+        ];
+
+        const results = matchResults(reportOutput, regexp);
+
+        expect(results.length).toEqual(1);
+        expect(results[0][pattern.line!]).toEqual("11");
+        expect(results[0][pattern.column!]).toEqual("16");
+        expect(results[0][pattern.message!]).toEqual("Unexpected unit        ");
+        expect(results[0][pattern.code!]).toEqual("length-zero-no-unit");
+      });
     });
   });
 });
