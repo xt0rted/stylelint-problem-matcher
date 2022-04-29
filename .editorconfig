@@ -7,15 +7,13 @@ indent_size = 4
 indent_style = space
 trim_trailing_whitespace = true
 
-[*.{js,ts}]
+[*.{js,cjs,ts}]
 end_of_line = lf
 indent_size = 2
 
 [*.json]
+end_of_line = lf
 indent_size = 2
 
 [*.yml]
 indent_size = 2
-
-[{package.json,package-lock.json}]
-end_of_line = lf

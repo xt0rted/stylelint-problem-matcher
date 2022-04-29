@@ -1,19 +1,19 @@
-import { readFile } from "fs";
-import { join } from "path";
-import { promisify } from "util";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-import { getInput, setFailed } from "@actions/core";
+import {
+  getInput,
+  setFailed,
+} from "@actions/core";
 import { issueCommand } from "@actions/core/lib/command"
 
 import type { ProblemMatcherDocument } from "github-actions-problem-matcher-typings";
-
-const readFileAsync = promisify(readFile);
 
 export async function run(): Promise<void> {
   try {
     const action = getInput("action");
 
-    const matcherFile = join(__dirname, "..", ".github", "problem-matcher.json");
+    const matcherFile = join(__dirname, "problem-matcher.json");
 
     switch (action) {
       case "add":
@@ -25,7 +25,7 @@ export async function run(): Promise<void> {
         break;
 
       case "remove":
-        const fileContents = await readFileAsync(matcherFile, { encoding: "utf8" });
+        const fileContents = await readFile(matcherFile, { encoding: "utf8" });
         const problemMatcherDocument: ProblemMatcherDocument = JSON.parse(fileContents);
         const problemMatcher = problemMatcherDocument.problemMatcher[0];
 

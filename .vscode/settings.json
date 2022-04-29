@@ -1,7 +1,12 @@
 {
-    "cSpell.words": [
-        "dependabot",
-        "promisify",
-        "stylelint"
-    ]
-}
+  "cSpell.words": [
+    "dependabot",
+    "promisify",
+    "stylelint"
+  ],
+  // This makes sure we use the system version of node, not the vs code version
+  "eslint.runtime": "node",
+  "jest.jestCommandLine": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+  "jestrunner.jestCommand": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  }
