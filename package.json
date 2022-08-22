@@ -28,7 +28,7 @@
     "@actions/core": "^1.9.1"
   },
   "devDependencies": {
-    "@types/jest": "^28.1.6",
+    "@types/jest": "^28.1.7",
     "@types/node": "^18.7.4",
     "@vercel/ncc": "^0.34.0",
     "cross-env": "^7.0.3",
