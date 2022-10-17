@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Bumped `@actions/core` from 1.7.0 to 1.9.1
+- Bumped `@actions/core` from 1.7.0 to 1.10.0
 - Updated to run on Node 16
 - Converted to es modules
 
