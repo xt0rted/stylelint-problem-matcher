@@ -27,15 +27,17 @@ export async function run(): Promise<void> {
       case "remove":
         const fileContents = await readFile(matcherFile, { encoding: "utf8" });
         const problemMatcherDocument: ProblemMatcherDocument = JSON.parse(fileContents);
-        const problemMatcher = problemMatcherDocument.problemMatcher[0];
 
-        issueCommand(
-          "remove-matcher",
-          {
-            owner: problemMatcher.owner,
-          },
-          "",
-        );
+        for (const problemMatcher of problemMatcherDocument.problemMatcher) {
+          issueCommand(
+            "remove-matcher",
+            {
+              owner: problemMatcher.owner,
+            },
+            "",
+          );
+        }
+
         break;
 
       default:
