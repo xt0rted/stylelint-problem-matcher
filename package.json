@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/jest": "^28.1.7",
     "@types/node": "^20.14.11",
-    "@vercel/ncc": "^0.38.1",
+    "@vercel/ncc": "^0.38.2",
     "cross-env": "^7.0.3",
     "github-actions-problem-matcher-typings": "^1.1.0",
     "jest": "^28.1.3",
