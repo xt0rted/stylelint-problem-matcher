@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
           with:
-            node-version: 16
-      - uses: xt0rted/stylelint-problem-matcher@v1
+            node-version: 20
+      - uses: caire-health/stylelint-problem-matcher@main
       - run: npm ci
       - run: npm test
 ```

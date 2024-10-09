@@ -3,8 +3,8 @@
 ## Unreleased
 
 - Bumped `@actions/core` from 1.7.0 to 1.10.0
-- Updated to run on Node 16
 - Converted to es modules
+- Updated to run on Node 20.
 
 ## [1.3.0](https://github.com/xt0rted/stylelint-problem-matcher/compare/v1.2.0...v1.3.0) - 2022-04-28
 
